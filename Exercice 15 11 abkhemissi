@@ -34,7 +34,7 @@ debut
 
 	fonction toString()
 	debut
-		retourner "Nom : " + name + ", Weight : " + str(wiehgt) + ", Tusks Size : " + str(tusksSize)
+		retourner "Nom : " + name + ", Weight : " + str(weight) + ", Tusks Size : " + str(tusksSize)
 	fin
 
 fin
@@ -140,4 +140,21 @@ debut
 
 	fonction area()
 	debut
-		retourner 
+		retourner puissance(radius)*pi()
+	fin
+
+	fonction containsPoint(point2)
+	debut
+		 si puissance(point2.getX() - point.getX()) + puissance(point2.getY() - point.getY()) < puissance(radius) alors
+		 	retourner true
+		 sinon
+		 	retourner false
+		 finsi
+	fin
+
+	fonction toString()
+	debut
+		retourner "Cercle de centre : " + point.toString() + " et de rayon : " + radius 
+	fin
+
+fin
