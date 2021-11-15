@@ -1,3 +1,5 @@
+package src.Hippopotamus;
+
 public class Hippopotamus {
 
     //public car getter non demandé

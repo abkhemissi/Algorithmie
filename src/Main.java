@@ -1,3 +1,9 @@
+package src;
+
+import src.CerclePoint.Circle;
+import src.CerclePoint.Point;
+import src.Hippopotamus.Hippopotamus;
+
 public class Main {
 
     public static void main (String[] args){
