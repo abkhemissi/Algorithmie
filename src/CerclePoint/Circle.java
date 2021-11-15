@@ -1,3 +1,5 @@
+package src.CerclePoint;
+
 public class Circle {
 
     private Point point;
