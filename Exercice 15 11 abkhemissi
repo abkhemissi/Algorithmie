@@ -1,0 +1,143 @@
+/*
+Exercice 1
+*/
+
+
+Classe Hippopotamus(name, weight, tusksSize)
+
+debut
+
+	fonction swim()
+	debut
+		Affecter a weight : weight -0.3
+	fin
+
+	fonction eat()
+	debut
+		Affecter a weight : weight + 1
+	fin
+
+	fonction fight(hippopotamus)
+	gagnant : chaine
+	debut
+		si hippopotamus.tusksSize > tusksSize alors
+			Affecter à gagnant : hippopotamus.name + " gagne"
+		sinon si hippopotamus.tuskSize < tusksSize alors
+			Affecter à gagnant : name + " gagne"
+		sinon
+			Affecter à gagnant : "match nul"
+		finsi
+
+		retourner gagnant
+
+	fin
+
+	fonction toString()
+	debut
+		retourner "Nom : " + name + ", Weight : " + str(wiehgt) + ", Tusks Size : " + str(tusksSize)
+	fin
+
+fin
+
+
+programme TestCombat
+
+	hippopotame : Hippopotamus(Hippopotame,1500,80)
+	hippopotame2 : Hippopotamus(Hippopotame,1700,60)
+	semaines : entier
+	soirs : entier
+	heures : entier
+
+debut
+
+	Afficher hippopotame.fight(hippopotame2)
+
+	Affecter à semaines : 3
+	Affecter à jours : 7
+	Affecter à heures : 15
+
+	pour i de 0 à semaines
+
+		pour i de 0 à soirs
+
+			pour i de 0 à heures
+
+				pour i de 0 à 2
+					hippopotame.eat()
+				finpour
+
+				pour i de 0 à 3
+					hippopotame.swim()
+				finpour
+
+			finpour
+
+			Afficher hippopotame.fight(hippopotame2)
+
+		finpour
+
+	finpour
+
+fin
+
+/*
+Exercice 2
+*/
+
+
+Classe Point (x,y)
+
+debut
+
+	fonction getX()
+	debut
+		retourner x
+	fin
+
+	fonction setX(x)
+	debut
+		Affecter à x : x
+	fin
+
+	fonction getY()
+	debut
+		retourner y
+	fin
+
+	fonction setY(y)
+	debut
+		Affecter à y : y
+	fin
+
+	fonction toString()
+	debut
+		retourner "Point (" + x + "," + y + ")"
+	fin
+
+fin
+
+
+programme TestPoint
+
+point: Point(1,2)
+
+debut
+	Afficher point.getX()
+	point.setX(0)
+	Afficher point.gety()
+	point.setY(1)
+
+fin
+
+
+/*
+Exercice 3
+*/
+
+Classe Circle(point,radius)
+
+debut
+
+	fonction area()
+	debut
+		retourner 
