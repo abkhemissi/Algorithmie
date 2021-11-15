@@ -158,3 +158,25 @@ debut
 	fin
 
 fin
+
+
+programme TestCircle
+
+point : Point(1,2)
+circle : Circcle(point,3)
+
+debut
+	
+	Afficher circle.toString()
+
+	Afficher circle.area()
+
+	Afficher str(circle.containsPoint(point))
+
+	point.setY(5)
+
+	Afficher str(circle.containsPoint(point))
+
+fin
+
+
