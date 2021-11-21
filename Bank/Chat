@@ -1,0 +1,52 @@
+/*
+but: classe pour gérer les messages entre un conseiller et un utilisateur
+*/
+
+classe Chat(user, conseiller)
+/*liste avec une taille non défini*/
+messages[] : Message
+
+debut
+	fonction envoiMessage(message, sender)
+	debut
+		messages.add(new Message(message, sender))
+	fin
+
+	fonction afficherMessages()
+	debut
+		pour i de 0 à taille(messages)
+			Afficher messages[i].getSender() + " : " + messages[i].getMessage  
+		finpour
+	fin
+
+fin
+
+________________________________________
+
+/*
+but: classe pour créer des Conseiller
+*/
+Classe Conseiller(nom,prenom)
+debut
+
+fin
+
+____________________________________________
+
+/*
+but: savoir qui envoi le message
+*/
+Classe Message(message, sender)
+
+debut
+	fonction getMessage()
+	debut
+		retourner message
+	fin
+
+	fonction getSender()
+	debut
+		retourner sender
+	fin
+
+fin

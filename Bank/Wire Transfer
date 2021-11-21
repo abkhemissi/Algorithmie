@@ -1,0 +1,174 @@
+/*
+but : créer un compte avec des bénéficaires et permettre les transaction entre différents comptes d'origine différentes
+*/
+
+classe BankAccount(rib)
+
+bénéficiaires[] : BankAccount
+montant: réel
+debitale : boolean
+
+debut
+
+	/* on ajoute de l'argent sur le compte courant, on considère que la monnaie du montant en paramètre est celui du compte pris en paramètre*/
+	fonction débit(bankAccount, montant1)
+	i : int
+	debut	
+		Affecter à débitable : false
+		Affecter à i : 0
+		tantque débitable = false
+			si bénéficiares[i] = bankAccount.getRib()
+				débitable = true
+			finsi
+			i = i +1
+		fintantque 
+
+		si debitable = true alors
+
+			si montant1 > bankAccount.getMontant() alors
+				Afficher "Ce montant ne peux pas être débiter"
+			sinon
+				si extraire(rib,0,2) != extraire(bankAccount.getRib,0,2) alors
+					Affecter à montantADebiter : Converter.convertCurrency(extraire(rib,0,2), extraire(bankAccount.getRib,0,2), montant)
+					bankAccount.setMontant(montant-montant1)
+					setMontant(bankAccount.getMontant() + montantADebiter)
+				sinon
+					bankAccount.setMontant(montant-montant1)
+					setMontant(bankAccount.getMontant + montant1)
+				finsi
+
+			finsi
+		sinon
+			Afficher "Ce compte ne peux etre débiter"
+		finsi
+	fin
+
+
+	/* on ajoute de l'argent sur le compte qu'on prend en paramètre, on considère que la monnaie qu'on crédite est celui du compte qu'on prend en paramètre*/
+	fonction credit(bankAccount, montant1)
+	montantACrediter : réel
+	/* pour stocker les comptes bénéficiaires du compte pris en paramètre
+	compteDébitables[] : BankAccount
+	i : int
+	debut	
+		Affecter à crébitable : false
+		Affecter à i : 0
+		Affecter à compteDébitables : bankAccount.getBénéficiares()
+
+		tantque crébitable = false
+			si compteDébitables[i] = getRib()
+				crébitable = true
+			finsi
+			i = i +1
+		fintantque 
+
+		si montant1 > getMontant() alors
+			Afficher "Ce montant ne peux pas être créditer"
+		sinon
+			si extraire(rib,0,2) != extraire(bankAccount.getRib,0,2) alors
+				Affecter à montantACrediter : Converter.convertCurrency(extraire(rib,0,2), extraire(bankAccount.getRib,0,2), montant)
+				setMontant(montant-montant1)
+				bankAccount.setMontant(bankAccount.getMontant() + montantACrediter)
+			sinon
+				setMontant(montant-montant1)
+				bankAccount.setMontant(bankAccount.getMontant + montant1)
+			finsi
+
+		finsi
+
+	fin
+
+	fonction convert(montant, pays)
+	montantModifié : réel
+	debut
+		Affecter à montantModifié : Converter.convert(montant,pays)
+		retourner montantModifié
+	fin
+
+	fonction getMontant()
+	debut 
+		retourne montant
+	fin
+
+	fonction getBeneficiaires()
+	debut
+		retourne bénéficiaires
+	fin
+
+	fonction setMontant(nouveauMontant)
+	debut
+		Affecter à montant nouveauMontant
+	fin
+fin
+
+
+_________________________________
+
+/*
+but : permettre la conversion de monnaies
+*/
+
+Classe Converter()
+
+paysCurrency[]: PaysCurrency
+
+convertRatios[] : ConvertRatio
+
+debut
+
+	fonction convertCurrency(pays1, pays2, montant)
+	currency1 : string
+	currency2 : string
+	debut
+		pour i de 0 a taille(paysCurrency)
+			
+			si paysCurrency[i].getPays() = pays1 alors
+				Affecter à currency1 : paysCurrency[i].getCurrency()
+			finsi
+		finpour
+
+		pour i de 0 a taille(paysCurrency)
+			si paysCurrency[i].getPays = pays2 alors
+				Affecter à currency2 : paysCurrency[i].getCurrency()
+			finsi
+		finpour
+
+		pour i de 0 à taille(convertRatios)
+			si convertRatios[i].getCurrency1 = currency1 ou convertRatios[i].getCurrency2 = currency2 alors
+				retourner montant * convertRatios[i].getRatio()
+			finsi
+		finpour
+
+	fin
+fin
+
+
+______________________________________
+/*
+but : créer une convertion entre un pays et un autre avec le ratio qui correspond
+par exemple on aura un objet composé de (euro, dollar, 1.12) qui correspond a la conversion euro en dollar us
+*/
+
+Classe ConvertRatio(currency,currency2,ratio)
+debut	
+	/*getter + setter*/
+fin
+
+______________________________________
+
+/*
+but: créer les objets permettant de stocker les pays avec leur monnaie
+*/
+
+Classe PaysCurrency(pays, currency)
+debut
+	/*getter + setter*/
+fin
+
+
+
+
+	
+
+
+

@@ -1,0 +1,176 @@
+/*
+but: permettre la création d'utilisateur et leur authentification
+*/
+
+
+programme UserAuth
+
+nom: string
+prenom : string
+email : string
+password : string
+passwordConfirm: string
+numTel: string
+codeVerification: string
+
+début
+
+	fonction creationUser()
+	debut
+
+		Afficher "Entre votre nom"
+		saisir nom
+		Afficher "Entre votre prenom"
+		saisir prenom
+		Afficher "Entre votre adresse email"
+		saisir email
+		Afficher "Entre un mot de passe"
+		saisir password
+		Afficher "Confirmer votre mot de passe"
+		saisir passwordConfirm
+		Afficher "Entrez votre numéro de téléphone"
+		saisir numTel
+
+		tantque	 password !=  passwordConfirm 
+			Afficher "Les mots de passe ne correspondent pas, Réessayer"
+				saisir passwordConfirm
+		fintantque
+
+		/*On suppose qu'on a une méthode de hachage du mot de passe*/
+		Database.insert(new User(nom,prenom,email,hash(password),numTel))
+	fin
+
+	fonction connexion()
+	debut
+		Afficher "Email"
+			saisir email
+		Afficher "Mot de passe"
+			saisir password
+
+		Database.verify(email, password)
+
+		Affecter à numTel : DatabaseService.getNumTel(email)
+
+		PhoneOTPService.sendOTP(numTel)
+
+		Afficher "Entrer le code de vérification"
+		saisir codeVerification
+
+		PhoneOTPService.verify(codeVerification, numTel)
+
+	fin
+
+	fonction numTelUpdate(email, numTel)
+	debut
+		Database.update(email, numTel)
+	fin
+
+fin
+
+________________________________________
+
+/*
+but: classe pour les utilisateurs et leur ajouter des comptes
+*/
+classe User(nom,prenom,email,password,numTel)
+
+bankAccount[] : BankAccount
+
+debut 
+
+	fonction getEmail()
+	debut 
+		retourne email
+	fin
+
+	fonction getNumTel()
+	debut 
+		retourne numTel
+	fin
+
+	fonction ajoutCompte(bankAccount)
+	debut
+		bankAccount.add(bankAccount)
+	fin
+
+fin
+
+_________________________________________
+
+/*
+but: appeler la base de données pour faire les insertions, la récuperation et la mise a jour de données
+*/
+classe DataBase
+
+debut
+
+	fonction insert(user)
+	debut
+		si DatabaseService.containsEmail(user.getEmail()) alors
+			Afficher "cette email existe deja"
+		sinon si DatabaseService.containsNumTel(user.getNumTel()) alors
+			Afficher "Ce numéro de téléphone existe deja"
+		sinon
+			DatabaseService.insert(user)
+		finsi
+	fin
+
+	/*update seulement pour un numero de téléphone*/
+
+	fonction update(email,numTel)
+	debut
+		si DatabaseService.containsNumTel(user.getNumTel()) alors
+			Afficher "Ce numéro de téléphone existe deja"
+		finsi
+
+		DatabaseService.update(email,numTel)
+	fin
+
+	fonction verify(email, password)
+	debut
+		si DatabaseService.getHashedPassword(email) = hash(password) alors
+			Afficher "Un code de vérification a été envoyé sur votre téléphone"
+		sinon
+			Afficher "Compte introuvable"
+		finsi
+	fin
+
+fin
+
+___________________________________________
+
+/*
+but : permettre de faire les requetes en base
+*/
+
+programme DatabaseService
+
+fonction containsEmail(email)
+fonction containsNumTel(numTel)
+fonction getPassword(email)
+fonction getNumTel(email)
+fonction insertUser(user)
+fonction getHashedPassword(email)
+_____________________________________________
+
+/*
+but: envoyer les codes de vérifications et tester si le code correspond
+*/
+
+programme PhoneOTPService
+
+fonction send(numTel)
+
+fonction getCode(numTel)
+
+fonction verify(codeVerification, numTel)
+debut
+	si codeVerification = getCode(numTel) alors
+		Afficher "Vous êtes connecté sur votre espace client"
+	sinon
+		Afficher "Code incorrect"
+	finsi
+fin
+
+
+________________________________________________
